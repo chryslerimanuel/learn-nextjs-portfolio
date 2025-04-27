@@ -21,8 +21,8 @@ export default function Navbar() {
           {/* Links - This is hidden on mobile and visible on desktop */}
           <div className={`lg:flex space-x-6 ${isMenuOpen ? 'block transition-all ease-in-out duration-300' : 'hidden'}`}>
             <a href="#home" className="text-gray-800 dark:text-white hover:text-black dark:hover:text-yellow-200">Home</a>
-            <a href="#about" className="text-gray-800 dark:text-white hover:text-black dark:hover:text-yellow-200">About</a>
             <a href="#projects" className="text-gray-800 dark:text-white hover:text-black dark:hover:text-yellow-200">Projects</a>
+            <a href="#resume" className="text-gray-800 dark:text-white hover:text-black dark:hover:text-yellow-200">Resume</a>
             <a href="#contact" className="text-gray-800 dark:text-white hover:text-black dark:hover:text-yellow-200">Contact</a>
           </div>
 
