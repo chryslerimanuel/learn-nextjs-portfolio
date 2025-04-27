@@ -3,10 +3,10 @@ export default function Hero() {
       <section id="home" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800">
         <div className="text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
-            Hello, I'm <span className="text-blue-500 dark:text-yellow-200">Your Name</span>
+            Hello, I&apos;m <span className="text-blue-500 dark:text-yellow-200">Your Name</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl mb-6">
-            I'm a passionate developer specializing in Next.js and web technologies.
+            I&apos;m a passionate developer specializing in Next.js and web technologies.
           </p>
           <a
             href="#projects"
