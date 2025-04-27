@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
+import Head from "next/head";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -19,11 +20,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="description" content="Your portfolio description" />
+        <meta name="keywords" content="developer, portfolio, Next.js, React" />
+        <meta name="author" content="Your Name" />
+        <meta property="og:title" content="Your Portfolio" />
+        <meta property="og:description" content="Check out my work and projects!" />
+        <meta property="og:image" content="URL_to_image_for_social_media_share" />
+        <meta property="og:url" content="https://www.your-website.com" />
+        <title>Your Portfolio</title>
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
