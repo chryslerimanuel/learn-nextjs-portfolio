@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react';
-import Together from 'together-ai';
 
 type Message = {
   role: 'user' | 'system' | 'assistant' | 'tool';
@@ -9,33 +8,38 @@ type Message = {
 };
 
 const isDeploy = process.env.NEXT_PUBLIC_IS_DEPLOY_VERCEL === "1";
-console.log(isDeploy)
 
 const Chatbot: React.FC<{ closeChat: () => void }> = ({ closeChat }) => {
   const [userMessage, setUserMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Create an instance of the Together API
-  const together = new Together({ apiKey: process.env.NEXT_PUBLIC_TOGETHER_API_KEY });
-
   const handleSendMessage = async () => {
     if (isDeploy) return; // Disable feature on deployment
     if (!userMessage) return;
-
+  
     setLoading(true);
-
-    // Add user message to chat history
     setChatHistory((prev) => [...prev, { role: 'user', content: userMessage }]);
-
+  
     try {
-      // API call to get chatbot response
-      const response = await together.chat.completions.create({
-        messages: [...chatHistory, { role: 'user', content: userMessage }],
-        model: 'meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8',
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userMessage,
+          chatHistory,
+        }),
       });
-
-      const botMessage = response.choices?.[0]?.message?.content;
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch response');
+      }
+  
+      const data = await response.json();
+      const botMessage = data.choices?.[0]?.message?.content;
+  
       if (botMessage) {
         setChatHistory((prev) => [...prev, { role: 'assistant', content: botMessage }]);
         setUserMessage('');
