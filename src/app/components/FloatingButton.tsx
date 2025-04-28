@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Chatbot from './Chatbot'; 
 
 const FloatingButton: React.FC = () => {
@@ -9,21 +9,6 @@ const FloatingButton: React.FC = () => {
   const handleClick = () => {
     setShowChatbot(!showChatbot); 
   };
-
-  const handleKeyPress = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      console.log('Enter clicked');
-      handleClick();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
-    
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, []);
 
   return (
     <div>
